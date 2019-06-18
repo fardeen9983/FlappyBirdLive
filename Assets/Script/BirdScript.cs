@@ -2,7 +2,7 @@
 
 public class BirdScript : MonoBehaviour
 {
-    //Hashcodes for Animator triggers
+    //Hashcode for Animator triggers
     private static readonly int Flap = Animator.StringToHash("Flap");
 
     private static readonly int Die = Animator.StringToHash("Die");
