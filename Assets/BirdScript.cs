@@ -2,6 +2,14 @@
 
 public class BirdScript : MonoBehaviour
 {
+    //Hashcodes for Animator triggers
+    private static readonly int Flap = Animator.StringToHash("Flap");
+
+    private static readonly int Die = Animator.StringToHash("Die");
+
+    //Reference to Animator component on the bird
+    private Animator _anim;
+
     //Keep track that the bird has hit the ground or not
     private bool _isDead;
 
@@ -17,6 +25,7 @@ public class BirdScript : MonoBehaviour
         upForce = 200f;
         _isDead = false;
         _rb2D = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,6 +41,8 @@ public class BirdScript : MonoBehaviour
                 _rb2D.velocity = Vector2.zero;
                 //Add force in upwards direction
                 _rb2D.AddForce(upForce * Vector2.up);
+                //Set Flap animation
+                _anim.SetTrigger(Flap);
             }
     }
 
@@ -39,5 +50,7 @@ public class BirdScript : MonoBehaviour
     {
         //On collision with everything make the bird go dead
         _isDead = true;
+        //Set Die animation
+        _anim.SetTrigger(Die);
     }
 }
